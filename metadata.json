@@ -1,0 +1,8 @@
+{
+  "name": "Remix FISAT Nexus · Retro-Modern College Portal",
+  "description": "An interactive, next-generation college web portal blending modern engineering graphics with 90s nostalgic retro-computing elements, interactive campus tour, branch finder, and memory lane.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

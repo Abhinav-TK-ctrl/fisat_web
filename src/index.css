@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-page: #f4f7f6;
+    --bg-card: #ffffff;
+    --text-primary: #12211e;
+    --text-muted: #536762;
+    --brand-dark: #0a2724;
+    --brand-forest: #0f3b3a;
+    --brand-gold: #c99a2e;
+    --brand-terracotta: #b5502e;
+    --border-subtle: #d7e2df;
+    --font-heading: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-serif: 'Newsreader', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  /* 90s Retro Warp Mode Variables */
+  body.retro-mode {
+    --bg-page: #008080;
+    --bg-card: #c0c0c0;
+    --text-primary: #000000;
+    --text-muted: #202020;
+    --brand-dark: #000080;
+    --brand-forest: #000080;
+    --brand-gold: #ffff00;
+    --brand-terracotta: #cc0000;
+    --border-subtle: #808080;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.retro-mode * {
+    border-radius: 0px !important;
+  }
+
+  body.retro-mode h1,
+  body.retro-mode h2,
+  body.retro-mode h3,
+  body.retro-mode .pixel-text {
+    font-family: 'Press Start 2P', monospace !important;
+    letter-spacing: -0.5px;
+  }
+}
+
+.font-heading {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+/* 90s Windows 95 authentic beveled borders */
+.win95-raised {
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow: inset 1px 1px 0px #dfdfdf, inset -1px -1px 0px #808080;
+}
+
+.win95-sunken {
+  background-color: #ffffff;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px 0px #000000, inset -1px -1px 0px #dfdfdf;
+}
+
+.win95-button {
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  cursor: pointer;
+}
+
+.win95-button:active {
+  border-top: 2px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+/* CRT Scanlines and curvature */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  opacity: 0.7;
+}
+
+/* 7-Segment Digital Font & Visitor Counter */
+.counter-box {
+  background: #000000;
+  color: #00ff66;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(0, 255, 102, 0.8);
+  letter-spacing: 3px;
+  display: inline-block;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e6eee9;
+}
+::-webkit-scrollbar-thumb {
+  background: #0f3b3a;
+  border-radius: 4px;
+}
+body.retro-mode ::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 2px outset #ffffff;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Blink animation for 90s tags */
+@keyframes retro-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.retro-blink {
+  animation: retro-blink 1s steps(1) infinite;
+}
+
+/* Slideshow timer bar animation */
+@keyframes slideProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* Scroll transition utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.scroll-slide-enter {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-slide-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth Popping Transition for opening modals, cards, tooltips */
+@keyframes smoothPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-pop-in {
+  animation: smoothPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Shimmer Highlight Badge for UGC & NAAC A+ */
+@keyframes shimmerGlow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-badge {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 154, 46, 0.15) 0%,
+    rgba(254, 240, 138, 0.45) 50%,
+    rgba(201, 154, 46, 0.15) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerGlow 3.5s infinite;
+}
+
+/* Golden Pulse Ring */
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 154, 46, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(201, 154, 46, 0);
+  }
+}
+
+.gold-pulse {
+  animation: goldPulse 2.5s infinite;
+}
+
